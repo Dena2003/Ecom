@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid rgb(195, 183, 183);
+            border-radius: 8px; 
+        }
+        .container p {
+            font-size: 16px;
+            color:black;
+            margin-bottom: 20px;
+        }
+        .container button,
+        .container a {
+            display: inline-block;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .container button {
+            background-color: red;
+        }
+        .container a {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Product</h1>
+    <div class="container">
+        <p>Are you sure you want to delete "{{ product.product_name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirm Deletion</button>
+        </form>
+        <a href="{% url 'product_list' %}">Cancel</a>
+    </div>
+</body>
+</html>
+{% endblock %}

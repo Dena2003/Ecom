@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<style>
+    form{
+        text-align: justify;
+        font-size: larger;
+        font-style: italic;
+        
+    }
+    button{
+        width: 100px;
+        height: 50px;
+        background-color: red;
+        margin-left:100px;
+    }
+    div{
+        height: 60px;
+        
+    }
+    input{
+        width: 220px;
+        height: 30px;
+    }
+</style>
+    <h2>Login</h2>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+    
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: wheat;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+            
+            border-radius: 8px;
+            font-size: large;
+            text-align: justify;
+            font-style: italic;
+           
+        }
+        button{
+            height: 80px;
+            width: 200px;
+            background-color: red;
+            color:wheat;
+            font-size: x-large;
+            text-align: center;
+            margin-left: 120px;
+            
+        }       
+    </style>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"><b>Save Changes</b></button>
+        <br>
+        <br>
+        <a href="{% url 'product_list' %}" style="color:red;text-decoration: none;text-align: center;margin-left: 120px;font-size: larger;">BACK TO PRODUCT LIST</a>
+    </form>
+    </div>
+    {% endblock %}

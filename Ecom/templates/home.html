@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+    h2,p{
+        text-align: center;
+        font-style: italic;
+        font-size: xx-large;
+        margin-top: 100px;
+    }
+</style>
+    
+    <h2><b>Welcome, {{ userName }}!</b></h2>
+    <p><b>This is your home page.</b></p>
+{% endblock %}

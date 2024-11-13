@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            max-width: 100px;
+            border-radius: 5px;
+        }
+        .cart-item-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .cart-item-details h3 {
+            margin: 0;
+            color: blue;
+        }
+        .cart-item-details p {
+            margin: 5px 0;
+            color: gray;
+        }
+        .cart-item a {
+            color: red;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .cart-item a:hover {
+            text-decoration: underline;
+        }
+        .total-price {
+            font-size: 18px;
+            text-align: right;
+            margin: 20px 0;
+            color: #333;
+        }
+        .add-product-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .add-product-button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Cart</h1>
+        <div>
+            {% if cart_items %}
+                {% for item in cart_items %}
+                    <div class="cart-item">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.product_name }}">
+                        <div class="cart-item-details">
+                            <h3>{{ item.product.product_name }}</h3>
+                            <p>Price: ${{ item.product.price }}</p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                        </div>
+                        <a href="{% url 'remove_from_cart' product_name=item.product.product_name %}">Remove</a>
+                    </div>
+                {% endfor %}
+                <div class="total-price">
+                   <b>Total Price: ${{ total_price }}</b> 
+                </div>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'product_list' %}" class="add-product-button">Add More Products</a>
+    </div>
+</body>
+</html>
